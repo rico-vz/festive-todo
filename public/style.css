@@ -4,6 +4,9 @@ body {
     background-size: cover;
 }
 
+/*  Credits to Toby J for the Christmas lightrope  */
+/* Source: https://codepen.io/tobyj/pen/QjvEex  */
+
 .lightrope {
     text-align: center;
     white-space: nowrap;

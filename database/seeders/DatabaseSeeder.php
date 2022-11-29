@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use \App\Models\Task;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Task::factory()->count(50)->create();
-        \App\Models\Task::factory()->count(50)->completed()->create();
+        Task::factory()->count(15)->create();
+        Task::factory()->count(15)->completed()->create();
     }
 }

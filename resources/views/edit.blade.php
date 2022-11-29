@@ -74,7 +74,7 @@
                         <div>
                             <input type="checkbox" name="completed" id="completed"
                                 class="form-checkbox h-5 w-5 mb-2 bg-white bg-opacity-10 border border-white border-opacity-10 rounded-lg text-white text-opacity-25 "
-                                {{ $task->completed ? 'checked' : '' }}>
+                                {{ $task->is_completed ? 'checked' : '' }}>
                             <label for="completed" class="text-white mb-2">Completed</label>
                         </div>
                         <input type="text" name="description" value="{{ $task->description }}"

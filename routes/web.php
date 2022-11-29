@@ -16,7 +16,6 @@ use App\Http\Controllers\TodoController;
 
 Route::get('/', [TodoController::class, 'index']);
 
-
 Route::post('/addtodo', [TodoController::class, 'store']);
 
 Route::get('/edit/{id}', [TodoController::class, 'edit']);

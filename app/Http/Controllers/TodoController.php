@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Models\Task;
+use Illuminate\Support\Facades\Redirect;
 
 class TodoController extends Controller
 {
     public function index()
     {
-        // Paginate
-        $tasks = \App\Models\Task::paginate(10);
+        $tasks = Task::orderBy('created_at', 'desc')->paginate(10);
         return view('index', [
             'tasks' => $tasks,
         ]);
@@ -21,7 +22,7 @@ class TodoController extends Controller
             'description' => 'required',
         ]);
 
-        \App\Models\Task::create([
+        Task::create([
             'description' => $request->description,
         ]);
 
@@ -30,25 +31,25 @@ class TodoController extends Controller
 
     public function update(Request $request)
     {
-        $task = \App\Models\Task::findOrFail($request->id);
+        $task = Task::findOrFail($request->id);
         $task->is_completed = $task->is_completed ? 0 : 1;
         $task->save();
 
-        return redirect('/');
+        return redirect(Redirect::back()->getTargetUrl());
     }
 
     public function destroy(Request $request)
     {
-        $task = \App\Models\Task::findOrFail($request->id);
+        $task = Task::findOrFail($request->id);
         $task->delete();
 
-        return redirect('/');
+        return redirect(Redirect::back()->getTargetUrl());
     }
 
     public function edit(Request $request)
     {
         return view('edit', [
-            'task' => \App\Models\Task::findOrFail($request->id),
+            'task' => Task::findOrFail($request->id),
         ]);
     }
 
@@ -58,7 +59,7 @@ class TodoController extends Controller
             'description' => 'required',
         ]);
 
-        $task = \App\Models\Task::findOrFail($request->id);
+        $task = Task::findOrFail($request->id);
         $task->is_completed = $request->completed ? 1 : 0;
         $task->description = $request->description;
         $task->save();
